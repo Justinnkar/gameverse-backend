@@ -1,17 +1,17 @@
 ### Create rails app
 
-$ rails new gameverse-app-backend -d postgresql -T
-$ cd gameverse-app-backend
-$ rails db:create
-$ bundle add rspec-rails
-$ rails generate rspec:install
+-$ `rails new gameverse-app-backend -d postgresql -T`
+-$ `cd gameverse-app-backend`
+-$ `rails db:create`
+-$ `bundle add rspec-rails`
+-$ `rails generate rspec:install`
 
 ### Device
 
-$ bundle add devise
-$ rails generate devise:install
-$ rails generate devise User
-$ rails db:migrate
+-$ `bundle add devise`
+-$ `rails generate devise:install`
+-$ `rails generate devise User`
+-$ `rails db:migrate`
 
 ### JWT
 
@@ -20,7 +20,7 @@ $ rails db:migrate
 gem 'devise-jwt'
 gem 'rack-cors'
 
-$ bundle
+-$ `bundle`
 
 ### CORS 
 
@@ -46,9 +46,9 @@ end
 rails g resource Game title:string rating:float platform:string genre:string developer:string image:text summary: text release_date:date
 ```
 
-$ rails db:migrate 
+-$ `rails db:migrate` 
 
-$ rails g migration add_user_id_for_games
+-$ `rails g migration add_user_id_for_games`
 
 in migration file:
 
@@ -56,7 +56,7 @@ in migration file:
 add_column :games, :user_id, :integer
 ```
 
-$ rails db:migrate 
+-$ `rails db:migrate` 
 
 Add relationship to user and game.
 
@@ -249,7 +249,7 @@ def change
   add_index :jwt_denylist, :jti
 end
 ```
-$ rails db:migrate 
+-$ `rails db:migrate`
 
 update user model:
 
