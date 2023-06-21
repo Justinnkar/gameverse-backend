@@ -135,7 +135,7 @@ replace with:
 config.sign_out_via = :get
 ```
 
-# Uncomment the config.navigational_formats line and remove the contents of the array:
+#### Uncomment the config.navigational_formats line and remove the contents of the array:
 ```ruby
 config.navigational_formats = []
 ```
