@@ -1,3 +1,8 @@
+### Validations
+
+add test for all attribute for game
+in ***spec/models/game_spec.rb***
+```ruby
 require 'rails_helper'
 
 RSpec.describe Game, type: :model do
@@ -115,3 +120,15 @@ RSpec.describe Game, type: :model do
   end
 
 end
+```
+
+run rspec for good fails:
+-$ `rspec spec/models/game_spec.rb`
+
+add validation in: ***app/models/game.rb***
+
+```ruby
+validates :title, :rating, :platform, :genre, :developer, :image, :summary, :release_date, presence: true
+```
+run rspec to pass
+-$ `rspec spec/models/game_spec.rb`
