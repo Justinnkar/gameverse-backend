@@ -1,8 +1,11 @@
-require 'rails_helper'
+### CRUD functions!
 
-RSpec.describe "Games", type: :request do
+#### index
 
-  describe "GET /index" do
+add test in ***spec/requests/games_spec.rb***
+
+```ruby
+describe "GET /index" do
     it "gets a list of games" do
       Game.create(
         title: 'League of Legends',
@@ -22,4 +25,21 @@ RSpec.describe "Games", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+```
+
+run rspec to get good fail
+-$ `rspec spec/requests/games_spec.rb`
+
+add index method in ***app/controllers/games_controller.rb***
+
+```ruby
+def index
+    games = Game.all
+    render json: games
 end
+```
+
+run rspec to pass test
+-$ `rspec spec/requests/games_spec.rb`
+
+
