@@ -1,7 +1,8 @@
 ### Validations
 
-add test for all attribute for game
+#### Add test for all attribute for game
 in ***spec/models/game_spec.rb***
+
 ```ruby
 require 'rails_helper'
 
@@ -151,10 +152,54 @@ end
 run rspec for good fails:
 -$ `rspec spec/models/game_spec.rb`
 
-add validation in: ***app/models/game.rb***
+#### add validation for game model
+
+in: ***app/models/game.rb***
 
 ```ruby
 validates :title, :rating, :platform, :genre, :developer, :image, :summary, :release_date, :user_id, presence: true
 ```
 run rspec to pass
 -$ `rspec spec/models/game_spec.rb`
+
+#### add test to user model:
+
+in ***spec/models/user_spec.rb***
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+
+  it "should validate user email" do
+    user = User.create(
+      email: nil,
+      password: "password"
+    )
+    expect(user.errors[:email]).to_not be_empty
+  end
+
+  it "should validate password" do
+    user = User.create(
+      email: "test1@example.com",
+      password: nil
+    )
+    expect(user.errors[:password]).to_not be_empty
+  end
+
+end
+```
+
+run rspec for good fails:
+-$ `rspec spec/models/user_spec.rb`
+
+#### add validation in user model:
+
+in ***app/models/user.rb***
+
+```ruby
+validates :email, :password, presence: true
+```
+
+run rspec to pass
+-$ `rspec spec/models/user_spec.rb`
