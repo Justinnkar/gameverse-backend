@@ -308,3 +308,71 @@ end
 
 run rspec to pass test
 -$ `rspec spec/requests/games_spec.rb`
+
+#### Update
+
+add test in ***spec/requests/games_spec.rb***
+
+(make sure make a game for testing, we can puts variable to see if is creating:
+p "game", game)
+
+```ruby
+describe "PATCH /update" do
+
+  let(:game) { Game.create(
+    title: 'League of what',
+    rating: 9.6,
+    platform: 'Windows PC, Mac OS',
+    genre: 'Multiplayer Online Battle Arena (MOBA)',
+    developer: 'Riot Games',
+    image: 'https://www.leagueoflegends.com/static/twitter-fafabb053dd48811ea554fe63188cc1a.jpg',
+    summary: "League of Legends is one of the world's most popular video games, developed by Riot Games. It features a team-based competitive game mode based on strategy and outplaying opponents. Players work with their team to break the enemy Nexus before the enemy team breaks theirs.", 
+    release_date: '2009-10-27',
+    user_id: user.id
+    )
+  }
+
+  it "edit info of a game" do
+    
+    game_params = {
+      game: {
+      title: 'LOL',
+      rating: 9.6,
+      platform: 'Windows PC, Mac OS',
+      genre: 'Multiplayer Online Battle Arena (MOBA)',
+      developer: 'Riot Games',
+      image: 'https://www.leagueoflegends.com/static/twitter-fafabb053dd48811ea554fe63188cc1a.jpg',
+      summary: "League of Legends is one of the world's most popular video games, developed by Riot Games. It features a team-based competitive game mode based on strategy and outplaying opponents. Players work with their team to break the enemy Nexus before the enemy team breaks theirs.", 
+      release_date: '2009-10-27',
+      user_id: user.id
+      }
+    }
+    p "game", game
+    patch "/games/#{game.id}", params: game_params
+
+    game1 = Game.first
+
+    expect(game1.title).to eq 'LOL'
+  end
+
+end
+```
+
+run rspec to get good fail
+-$ `rspec spec/requests/games_spec.rb`
+
+add update method in ***app/controllers/games_controller.rb***
+
+```ruby
+def update
+  game = Game.find(params[:id])
+  if game.update(game_params)
+    render json: game
+  else
+    render json: game.errors, status: :unprocessable_entity
+  end
+end
+```
+
+run rspec to pass the test
+-$ `rspec spec/requests/games_spec.rb`
