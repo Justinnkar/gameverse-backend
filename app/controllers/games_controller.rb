@@ -23,6 +23,17 @@ class GamesController < ApplicationController
     end
   end
 
+  def destroy
+    games = Game.all
+    game = Game.find(params[:id])
+    if game.destroy
+      render json: game
+    else
+      render json: game.errors, status: 422
+    end
+  end
+
+
   private
 
   def game_params
