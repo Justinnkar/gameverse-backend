@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: gameverse_app_backend_production
-  username: gameverse_app_backend
-  password: <%= ENV["GAMEVERSE_APP_BACKEND_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
