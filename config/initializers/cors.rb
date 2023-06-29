@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins 'http://gameversefront.onrender.com'
+      origins 'gameversefront.onrender.com'
       resource '*',
       headers: ["Authorization"],
       expose: ["Authorization"],
